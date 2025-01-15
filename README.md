@@ -33,3 +33,5 @@
 - RAG (**1/5~1/12 已經完成，剩下完善資料庫**)
 
 - langchain (**1/5~1/12 已經完成**)
+
+- [專題資料夾](/EmpathyRecognigtionTwisted/)
