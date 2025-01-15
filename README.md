@@ -1,39 +1,35 @@
-# 同理心與認知扭曲資料集生成器
+# 進度
 
-這個專案用於生成同理心對話和認知扭曲相關的訓練資料，格式參考 Alpaca 資料集。
+## 預計完成 / 已經完成
 
-## 功能
+### 文字轉語音功能 (**1/5~1/12 預計完成**)
 
-- 生成同理心回應的對話資料
-- 生成認知扭曲識別與回應的對話資料
+### 語音轉文字功能 (**1/5~1/12 預計完成**)
 
-## 使用方式
+- 語氣
+- 停頓
 
-運行以下指令生成資料：
+### app使用者介面 (**1/5~1/12 預計完成**)
 
-```bash
-python generate_empathy_data.py
-```
+- App端
+- API
+- Server端
+- tts & stt 手機端適配
 
-## 資料格式
+### ollama 環境安裝 (**12/30~1/2 已經完成**)
 
-生成的資料格式如下：
+### langchain教材內容實作 (**12/30~1/2 已經完成**)
 
-```json
-{
-  "conversations": [
-    {
-      "instruction": "對話指示",
-      "input": "使用者輸入",
-      "output": "助理回應"
-    }
-  ]
-}
-```
+- [langchain practice 1](langchain_practice.ipynb)
+- [langchain practice 2](phi3_langchain_practice.ipynb)
 
-## 自定義
+### 同理心與認知扭曲語言模型配合langchain及RAG及語音互動
 
-您可以透過修改程式碼中的模板來自定義：
+- 語音互動  (**1/5~1/12 預計完成**)
 
-- empathy_templates: 同理心對話模板
-- cognitive_distortion_templates: 認知扭曲模板
+  - TTS
+  - STT
+
+- RAG (**1/5~1/12 已經完成，剩下完善資料庫**)
+
+- langchain (**1/5~1/12 已經完成**)
