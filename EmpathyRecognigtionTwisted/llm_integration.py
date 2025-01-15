@@ -5,6 +5,8 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 import json
+import random
+from typing import Dict, Any
 
 class EmpathyLLM:
     def __init__(self, model_name="llama2", dataset_path="empathy_cognitive_dataset.json"):
@@ -50,8 +52,16 @@ class EmpathyLLM:
         )
 
     def _setup_conversation_chain(self):
+        patient_info = self._setup_patient_chain()
+        
         prompt_template = """
         你是一個具有高度同理心的助理，專門幫助人們處理情緒和認知問題。請使用繁體中文回應。
+        
+        個案資訊：
+        - 情緒狀態: {patient_info[emotional_state]}
+        - 壓力指數: {patient_info[stress_level]}/10
+        - 健康狀況: {", ".join(patient_info[health_condition])}
+        - 人際關係: {patient_info[relationship_status]}
         
         相關參考資訊：
         {context}
@@ -66,7 +76,7 @@ class EmpathyLLM:
         """
         
         PROMPT = PromptTemplate(
-            input_variables=["context", "chat_history", "question"],
+            input_variables=["context", "chat_history", "question", "patient_info"],
             template=prompt_template
         )
         
@@ -76,9 +86,28 @@ class EmpathyLLM:
                 search_kwargs={"k": 3}
             ),
             memory=self.memory,
-            combine_docs_chain_kwargs={"prompt": PROMPT},
+            combine_docs_chain_kwargs={
+                "prompt": PROMPT,
+                "patient_info": patient_info
+            },
             return_source_documents=True
         )
+
+    def _setup_patient_chain(self) -> Dict[str, Any]:
+        emotions = ['焦慮', '沮喪', '憤怒', '害怕', '煩躁']
+        relationships = ['家庭關係緊張', '工作人際困擾', '感情問題', '社交障礙']
+        health_issues = ['失眠', '頭痛', '食慾不振', '注意力難以集中']
+        
+        patient_info = {
+            "emotional_state": random.choice(emotions),
+            "relationship_status": random.choice(relationships),
+            "health_condition": random.sample(health_issues, 2),
+            "stress_level": random.randint(1, 10),
+            "support_system": random.choice(['較強', '普通', '較弱']),
+            "coping_mechanisms": random.sample(['運動', '冥想', '寫日記', '聽音樂'], 2)
+        }
+        
+        return patient_info
 
     def get_response(self, user_input):
         """獲取 LLM 的回應"""
