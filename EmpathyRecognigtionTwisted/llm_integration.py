@@ -11,7 +11,7 @@ import random
 from typing import Dict, Any
 
 class EmpathyLLM:
-    def __init__(self, model_name="llama2", dataset_path=None):
+    def __init__(self, model_name="llama3.3", dataset_path=None):
         if dataset_path is None:
             dataset_path = os.path.join(os.path.dirname(__file__), "data", "empathy_cognitive_dataset.json")
         # 使用 Ollama 本地模型

@@ -20,7 +20,7 @@ pip install -r requirements.txt
 1. 前往 [Ollama 官網](https://ollama.ai/) 下載並安裝
 2. 執行以下命令下載模型：
 ```bash
-ollama pull llama2
+ollama pull llama3.3
 ```
 
 ## 2. 專案檔案結構
@@ -104,7 +104,7 @@ python main.py
 ### 常見問題
 1. 模型載入失敗
 ```bash
-ollama pull llama2
+ollama pull llama3.3
 ```
 
 2. 依賴套件問題

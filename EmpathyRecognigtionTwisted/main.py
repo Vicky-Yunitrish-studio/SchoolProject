@@ -32,7 +32,7 @@ def main():
         print("\n感謝使用！")
     except Exception as e:
         print(f"系統初始化失敗：{str(e)}")
-        print("請確保已安裝 Ollama 並執行 'ollama pull llama2' 下載模型")
+        print("請確保已安裝 Ollama 並執行 'ollama pull llama3.3' 下載模型")
 
 if __name__ == "__main__":
     main()
